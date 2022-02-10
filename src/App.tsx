@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useRef } from "react";
+import "./App.scss";
 
-function App() {
+import useWindowDimensions from "./hooks/useWindowDimensions";
+
+import { graph } from "./graph";
+
+interface IProps {}
+
+const App = () => {
+  const { height, width } = useWindowDimensions();
+  const ref = useRef(null);
+  const data = [14, 25, 34];
+  useEffect(() => {
+    console.log(ref);
+    if (ref.current) {
+      graph({ ref: ref.current, height, width, data });
+    }
+    // Обновляем заголовок документа с помощью API браузера
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="svg">
+      <svg className="container" ref={ref} width={width} height={height}></svg>
     </div>
   );
-}
+};
 
 export default App;
