@@ -1,5 +1,10 @@
 .svg {
-  svg {
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 500px;
+    justify-content: space-between;
+    height: 60px;
     rect {
       fill: orange;
     }
@@ -9,5 +14,56 @@
       font: 10px sans-serif;
       text-anchor: end;
     }
+  }
+  .container2 {
+    rect {
+      fill: rgb(122, 111, 185);
+      opacity: 1;
+      box-sizing: border-box;
+      margin: 2px;
+    }
+
+    .loyal rect {
+      fill: #2b954d;
+    }
+    .switcher rect {
+      fill: #3bc366;
+    }
+    .prospect rect {
+      fill: #fbda68;
+    }
+    .winback rect {
+      fill: #fad029;
+    }
+    .lapsed rect {
+      fill: #f8a874;
+    }
+    .rejector rect {
+      fill: #f89ea4;
+    }
+    .unaware rect {
+      fill: #42beff;
+    }
+  }
+
+  .main-scale {
+    color: #b9b9b9;
+  }
+
+  .percent-xaxis line {
+    display: none;
+  }
+
+  .percent-xaxis text {
+    transform: translate(0, -20px);
+    font-weight: bold;
+  }
+
+  .percent-xaxis__non-customers {
+    color: rgb(148, 148, 148);
+  }
+
+  .percent-xaxis__customers {
+    color: #408c52;
   }
 }
