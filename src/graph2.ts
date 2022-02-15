@@ -77,14 +77,6 @@ export const graph2 = ({ ref2 }: graph2Props): void => {
     console.log(this);
   };
 
-  const mouseleaverWrap = function (this: Element, d: MouseEvent) {
-    // d.cancelBubble = false;
-    // d3.selectAll(".bar").style("opacity", 1);
-    // console.log(d, d.currentTarget);
-    console.log("mouseleaverWrap");
-    console.log(this);
-  };
-
   const mouseover = function (this: Element, d: MouseEvent) {
     // const target = d.target as Element;
     // console.log("target.id", target.parentNode);
@@ -97,22 +89,16 @@ export const graph2 = ({ ref2 }: graph2Props): void => {
     d3.select(this).style("opacity", 1);
   };
 
-  const mouseoverWrap = function (this: Element, d: MouseEvent) {
-    console.log("mouseoverWrap");
-    console.log(this);
-  };
-
   const barGroups = chart
     .append("g")
     .attr("class", "bars-wrapper")
 
-    .on("mouseleave", mouseleaverWrap)
-    .on("mouseover", mouseoverWrap)
+    .on("mouseleave", mouseleave)
     .selectAll()
     .data(incomingData)
     .enter()
     .append("g")
-    .on("mouseleave", mouseleave)
+
     .on("mouseover", mouseover);
 
   barGroups
