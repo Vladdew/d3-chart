@@ -2,25 +2,15 @@ import * as d3 from "d3";
 
 interface graph2Props {
   ref2: SVGSVGElement;
+
+  incomingData: { segment: string; value: number }[];
 }
 
-export const graph2 = ({ ref2 }: graph2Props): void => {
-  const incomingData = [
-    { segment: "Loyal", value: 41 },
-    { segment: "Switcher", value: 20 },
-    { segment: "Prospect", value: 12 },
-    { segment: "Winback", value: 6 },
-    { segment: "Lapsed", value: 3 },
-    { segment: "Rejector", value: 14 },
-    { segment: "Unaware", value: 4 },
-  ];
-
+export const graph2 = ({ ref2, incomingData }: graph2Props): void => {
   const margin = 60;
   const width = 1000 - 2 * margin;
   const height = 600 - 2 * margin;
   const svg = d3.select(ref2);
-
-  console.log(svg);
 
   const halfWidth = width / 2;
 
@@ -30,22 +20,22 @@ export const graph2 = ({ ref2 }: graph2Props): void => {
   let curentElWidthCustomers = 0;
   let curentComputedXCustomers = halfWidth + 1;
 
-  console.log("graph2", width, height, ref2);
+  //console.log("graph2", width, height, ref2);
 
   const chart = svg
     .append("g")
     .attr("class", "main-scale")
     .attr("transform", `translate(${margin + 100}, ${margin})`);
 
-  const yScale = d3.scaleBand().range([0, 50]).padding(0.02);
+  // const yScale = d3.scaleBand().range([0, 50]).padding(0.02);
 
-  chart.append("g").call(d3.axisLeft(yScale));
+  // chart.append("g").call(d3.axisLeft(yScale));
 
-  const xScale = d3.scaleLinear().domain([1, -1]).range([width, 0]);
-  chart
-    .append("g")
-    .attr("transform", `translate(0, 50)`)
-    .call(d3.axisBottom(xScale).tickFormat(d3.format("~%")));
+  // const xScale = d3.scaleLinear().domain([1, -1]).range([width, 0]);
+  // chart
+  //   .append("g")
+  //   .attr("transform", `translate(0, 50)`)
+  //   .call(d3.axisBottom(xScale).tickFormat(d3.format("~%")));
 
   let totalCustomersWidth = 0;
   let totalNonCustomersWidth = 0;
@@ -65,8 +55,8 @@ export const graph2 = ({ ref2 }: graph2Props): void => {
     // d.cancelBubble = false;
     d3.selectAll(".bar").style("opacity", 1);
     // console.log(d, d.currentTarget);
-    console.log("mouseleave");
-    console.log(this);
+    // console.log("mouseleave");
+    // console.log(this);
   };
 
   const mouseover = function (this: Element, d: MouseEvent) {
@@ -77,7 +67,6 @@ export const graph2 = ({ ref2 }: graph2Props): void => {
   const barGroups = chart
     .append("g")
     .attr("class", "bars-wrapper")
-
     .on("mouseleave", mouseleave)
     .selectAll()
     .data(incomingData)
@@ -109,7 +98,7 @@ export const graph2 = ({ ref2 }: graph2Props): void => {
     .attr("width", s => {
       return (s.value * halfWidth) / 100 - 2;
     })
-    .attr("height", yScale.bandwidth())
+    .attr("height", 50)
     .attr("rx", "4")
     .attr("ry", "3");
 
