@@ -1,18 +1,10 @@
 import * as d3 from "d3";
-import { BaseType } from "d3";
-import { on } from "events";
 
 interface graph2Props {
   ref2: SVGSVGElement;
 }
 
 export const graph2 = ({ ref2 }: graph2Props): void => {
-  const sample = [
-    { language: "Souyhwest", value: 15 },
-    { language: "American Airlines", value: 35 },
-    { language: "Delta", value: 50 },
-  ];
-
   const incomingData = [
     { segment: "Loyal", value: 41 },
     { segment: "Switcher", value: 20 },
@@ -43,7 +35,7 @@ export const graph2 = ({ ref2 }: graph2Props): void => {
   const chart = svg
     .append("g")
     .attr("class", "main-scale")
-    .attr("transform", `translate(${margin}, ${margin})`);
+    .attr("transform", `translate(${margin + 100}, ${margin})`);
 
   const yScale = d3.scaleBand().range([0, 50]).padding(0.02);
 

@@ -20,6 +20,9 @@ const App = () => {
     //   graph({ ref: ref.current, height, width, data });
     //   // StackedBarChart();
     // }
+    if (ref2.current) {
+      graph2({ ref2: ref2.current });
+    }
 
     if (ref3.current) {
       graph3({ ref3: ref3.current });
@@ -29,7 +32,12 @@ const App = () => {
   return (
     <div className="svg">
       {/* <svg className="container" ref={ref} width={width} height={height}></svg> */}
-      {/* <svg id="container2" className="container2" ref={ref2}></svg> */}
+      <svg
+        id="container2"
+        width={width}
+        className="container2"
+        ref={ref2}
+      ></svg>
       <svg
         id="container3"
         className="container3"

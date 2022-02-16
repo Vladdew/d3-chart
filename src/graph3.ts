@@ -55,6 +55,8 @@ export const graph3 = ({ ref3 }: graph2Props): void => {
   const svg = d3.select(ref3);
   const halfWidth = width / 2;
 
+  console.log(svg);
+
   const chart = svg
     .append("g")
     .attr("class", "main-scale")
@@ -80,17 +82,10 @@ export const graph3 = ({ ref3 }: graph2Props): void => {
     .attr("transform", `translate(0, 0)`)
     .call(d3.axisLeft(yScale));
 
-  const barGroups = chart
-    .selectAll()
-    .data(sample, d => {
-      console.log(d?.incomingData);
-      return d?.incomingData;
-    })
-    .enter()
-    .append("g");
+  const barGroups = chart.selectAll().data(sample).enter().append("g");
 
   barGroups
-    .attr("class", s => "bar-group " + s.language.toLowerCase())
+    .attr("class", s => "bar " + s.language.toLowerCase())
     .append("rect")
     .attr("x", halfWidth - 200)
     .attr("y", s => yScale(s.language)!)
