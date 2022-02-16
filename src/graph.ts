@@ -9,9 +9,8 @@ interface graphProps {
 
 export const graph = ({ ref, width, height, data }: graphProps): void => {
   const barWidth = 600,
-    scaleFactor = 10,
+    scaleFactor = 1,
     barHeight = 20;
-  console.log(width, height);
 
   const graph = d3
     .select(ref)
