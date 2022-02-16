@@ -78,13 +78,6 @@ export const graph2 = ({ ref2 }: graph2Props): void => {
   };
 
   const mouseover = function (this: Element, d: MouseEvent) {
-    // const target = d.target as Element;
-    // console.log("target.id", target.parentNode);
-    // if (d.target) {
-    //   console.log(d, d.target);
-    // }
-    console.log("mouseover");
-    console.log(this);
     d3.selectAll(".bar").style("opacity", 0.2);
     d3.select(this).style("opacity", 1);
   };
