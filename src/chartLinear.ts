@@ -41,27 +41,13 @@ export const chartLinear = ({
   let totalCustomersValue = 0;
   let totalNonCustomersValue = 0;
 
-  const mouseleave = function (this: Element, d: MouseEvent) {
-    d3.selectAll(".bar").style("opacity", 1);
-  };
-
-  const mouseover = function (this: Element, d: MouseEvent) {
-    d3.selectAll(".bar").style("opacity", 0.2);
-    d3.selectAll(`.${this.className.baseVal.split(" ")[1]}`).style(
-      "opacity",
-      1
-    );
-  };
-
   const barGroups = chart
     .append("g")
     .attr("class", "bars-wrapper")
     .selectAll()
     .data(incomingData)
     .enter()
-    .append("g")
-    .on("mouseleave", mouseleave)
-    .on("mouseover", mouseover);
+    .append("g");
 
   barGroups
     .attr("class", s => "bar " + s.segment.toLowerCase())

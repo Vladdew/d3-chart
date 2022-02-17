@@ -12,15 +12,15 @@ const App = () => {
 
   useEffect(() => {
     if (ref.current) {
-      scene({ ref3: ref.current, data });
+      scene({ ref: ref.current, data });
     }
   });
 
   return (
-    <div className="svg">
+    <div className="app">
       <svg
-        id="container3"
-        className="container3"
+        id="scene"
+        className="scene"
         ref={ref}
         width={width}
         height={height * 0.99}

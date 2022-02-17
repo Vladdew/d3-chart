@@ -1,29 +1,5 @@
-.svg {
-  .container {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 500px;
-    justify-content: space-between;
-    height: 60px;
-    rect {
-      fill: orange;
-    }
-
-    text {
-      fill: black;
-      font: 10px sans-serif;
-      text-anchor: end;
-    }
-  }
-  .container2,
-  .container3 {
-    rect {
-      fill: rgb(122, 111, 185);
-      opacity: 1;
-      box-sizing: border-box;
-      margin: 2px;
-    }
-
+.app {
+  .scene {
     .loyal rect {
       fill: #2b954d;
     }
