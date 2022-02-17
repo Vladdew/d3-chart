@@ -1,17 +1,20 @@
 import * as d3 from "d3";
 
-interface graph2Props {
-  ref2: SVGSVGElement;
-
+interface chartProps {
+  ref: SVGSVGElement;
+  mainClass: string;
   incomingData: { segment: string; value: number }[];
 }
 
-export const graph2 = ({ ref2, incomingData }: graph2Props): void => {
+export const chartLinear = ({
+  ref,
+  incomingData,
+  mainClass,
+}: chartProps): void => {
+  const svg = d3.select(ref);
+
   const margin = 60;
   const width = 1000 - 2 * margin;
-  const height = 600 - 2 * margin;
-  const svg = d3.select(ref2);
-
   const halfWidth = width / 2;
 
   let curentElWidthNonCustomers = 0;
@@ -20,22 +23,17 @@ export const graph2 = ({ ref2, incomingData }: graph2Props): void => {
   let curentElWidthCustomers = 0;
   let curentComputedXCustomers = halfWidth + 1;
 
-  //console.log("graph2", width, height, ref2);
+  const marginTop =
+    mainClass === "Southwest"
+      ? 368
+      : mainClass === "American_airlines"
+      ? 240
+      : 110;
 
   const chart = svg
     .append("g")
-    .attr("class", "main-scale")
-    .attr("transform", `translate(${margin + 100}, ${margin})`);
-
-  // const yScale = d3.scaleBand().range([0, 50]).padding(0.02);
-
-  // chart.append("g").call(d3.axisLeft(yScale));
-
-  // const xScale = d3.scaleLinear().domain([1, -1]).range([width, 0]);
-  // chart
-  //   .append("g")
-  //   .attr("transform", `translate(0, 50)`)
-  //   .call(d3.axisBottom(xScale).tickFormat(d3.format("~%")));
+    .attr("class", `bar-container ${mainClass.toLowerCase()}`)
+    .attr("transform", `translate(${margin + 100}, ${marginTop})`);
 
   let totalCustomersWidth = 0;
   let totalNonCustomersWidth = 0;
@@ -43,36 +41,26 @@ export const graph2 = ({ ref2, incomingData }: graph2Props): void => {
   let totalCustomersValue = 0;
   let totalNonCustomersValue = 0;
 
-  //   const makeYLines = () => d3.axisLeft(yScale);
-
-  //   chart
-  //     .append("g")
-  //     .attr("class", "grid")
-  //     .attr("transform", `translate(0, ${-margin / 2})`)
-  //     .call(makeYLines().tickSize(-width));
-
   const mouseleave = function (this: Element, d: MouseEvent) {
-    // d.cancelBubble = false;
     d3.selectAll(".bar").style("opacity", 1);
-    // console.log(d, d.currentTarget);
-    // console.log("mouseleave");
-    // console.log(this);
   };
 
   const mouseover = function (this: Element, d: MouseEvent) {
     d3.selectAll(".bar").style("opacity", 0.2);
-    d3.select(this).style("opacity", 1);
+    d3.selectAll(`.${this.className.baseVal.split(" ")[1]}`).style(
+      "opacity",
+      1
+    );
   };
 
   const barGroups = chart
     .append("g")
     .attr("class", "bars-wrapper")
-    .on("mouseleave", mouseleave)
     .selectAll()
     .data(incomingData)
     .enter()
     .append("g")
-
+    .on("mouseleave", mouseleave)
     .on("mouseover", mouseover);
 
   barGroups

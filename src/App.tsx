@@ -4,47 +4,26 @@ import "./App.scss";
 import useWindowDimensions from "./hooks/useWindowDimensions";
 import { data } from "./data";
 
-import { graph } from "./graph";
-// import { graph2 } from "./graph2";
-import { graph3 } from "./graph3";
-// import { StackedBarChart } from "./StackedBarChart";
-interface IProps {}
+import { scene } from "./scene";
 
 const App = () => {
   const { height, width } = useWindowDimensions();
-  //const ref = useRef(null);
-  const ref2 = useRef(null);
-  const ref3 = useRef(null);
+  const ref = useRef(null);
 
   useEffect(() => {
-    // if (ref.current) {
-    //   graph({ ref: ref.current, height, width, data });
-    //   // StackedBarChart();
-    // }
-    // if (ref2.current) {
-    //   graph2({ ref2: ref2.current, data });
-    // }
-
-    if (ref3.current) {
-      graph3({ ref3: ref3.current, data });
+    if (ref.current) {
+      scene({ ref3: ref.current, data });
     }
   });
 
   return (
     <div className="svg">
-      {/* <svg className="container" ref={ref} width={width} height={height}></svg> */}
-      {/* <svg
-        id="container2"
-        width={width}
-        className="container2"
-        ref={ref2}
-      ></svg> */}
       <svg
         id="container3"
         className="container3"
-        ref={ref3}
+        ref={ref}
         width={width}
-        height={height}
+        height={height * 0.99}
       ></svg>
     </div>
   );
