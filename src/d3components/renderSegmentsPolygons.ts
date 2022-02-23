@@ -27,14 +27,14 @@ export const renderSegmentsPolygons = ({ flag, scene }: Iprops): void => {
   const bottomY = -110;
 
   if (flag === "Customers") {
-    topRow = d3.selectAll(".delta .bar-customer");
-    midRow = d3.selectAll(".american_airlines .bar-customer");
-    botRow = d3.selectAll(".southwest .bar-customer");
+    topRow = document.querySelectorAll(".delta .bar-customer");
+    midRow = document.querySelectorAll(".american_airlines .bar-customer");
+    botRow = document.querySelectorAll(".southwest .bar-customer");
 
-    firstRect = d3.select((topRow as any)._groups[0][0].children[0]);
-    topRowLastRect = d3.select((topRow as any)._groups[0][1].children[0]);
-    midRowLastRect = d3.select((midRow as any)._groups[0][1].children[0]);
-    botRowLastRect = d3.select((botRow as any)._groups[0][1].children[0]);
+    firstRect = d3.select(topRow[0].children[0]);
+    topRowLastRect = d3.select(topRow[1].children[0]);
+    midRowLastRect = d3.select(midRow[1].children[0]);
+    botRowLastRect = d3.select(botRow[1].children[0]);
 
     firstRectX = +firstRect.attr("x") + 2;
     topRowLastRectX = +topRowLastRect.attr("x") + 2;
@@ -46,14 +46,14 @@ export const renderSegmentsPolygons = ({ flag, scene }: Iprops): void => {
     botRowLastRectWidth = +botRowLastRect.attr("width") - 2;
   }
   if (flag === "Non-customers") {
-    topRow = d3.selectAll(".delta .bar-noncustomer");
-    midRow = d3.selectAll(".american_airlines .bar-noncustomer");
-    botRow = d3.selectAll(".southwest .bar-noncustomer");
+    topRow = document.querySelectorAll(".delta .bar-noncustomer");
+    midRow = document.querySelectorAll(".american_airlines .bar-noncustomer");
+    botRow = document.querySelectorAll(".southwest .bar-noncustomer");
 
-    firstRect = d3.select((topRow as any)._groups[0][0].children[0]);
-    topRowLastRect = d3.select((topRow as any)._groups[0][4].children[0]);
-    midRowLastRect = d3.select((midRow as any)._groups[0][4].children[0]);
-    botRowLastRect = d3.select((botRow as any)._groups[0][4].children[0]);
+    firstRect = d3.select(topRow[0].children[0]);
+    topRowLastRect = d3.select(topRow[4].children[0]);
+    midRowLastRect = d3.select(midRow[4].children[0]);
+    botRowLastRect = d3.select(botRow[4].children[0]);
 
     firstRectX = +firstRect.attr("x") + 2;
     topRowLastRectX = +topRowLastRect.attr("x") + 2;

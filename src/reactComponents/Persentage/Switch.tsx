@@ -22,6 +22,7 @@ export class SwitchEl extends Component<AppProps, AppState> {
     } else {
       d3.selectAll(".percent-xaxis").style("display", "inline");
       d3.selectAll(".bar text").style("display", "inline");
+      d3.selectAll(".bar .short-block-text").style("display", "none");
     }
     this.setState({ checked });
   }
