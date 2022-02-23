@@ -38,7 +38,6 @@
   }
 
   &__item {
-    cursor: pointer;
     font-size: 14px;
     margin-right: 45px;
     display: flex;
@@ -62,6 +61,11 @@
   }
 
   &__item span {
+    pointer-events: none;
+  }
+
+  .tooltipLink,
+  #arrow {
     pointer-events: none;
   }
 

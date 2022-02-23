@@ -6,13 +6,11 @@ interface Iprops {
 }
 
 export const renderBarPolygons = ({ className, scene }: Iprops): void => {
-  const threeBars = d3.selectAll(className);
+  const threeBars = document.querySelectorAll(className);
 
-  const topRect = d3.select((threeBars as any)._groups[0][2].children[0]);
-
-  const middleRect = d3.select((threeBars as any)._groups[0][1].children[0]);
-
-  const bottomRect = d3.select((threeBars as any)._groups[0][0].children[0]);
+  const topRect = d3.select(threeBars[2].children[0]);
+  const middleRect = d3.select(threeBars[1].children[0]);
+  const bottomRect = d3.select(threeBars[0].children[0]);
 
   const RGBcolor = topRect.style("fill");
   let color = RGBcolor.replace(/rgb/i, "rgba");

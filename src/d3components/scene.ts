@@ -14,6 +14,7 @@ interface sceneProps {
 }
 
 export const scene = ({ ref, data }: sceneProps): void => {
+  let TTFlag = false;
   let popperInstance;
   let tooltip = document.querySelector("#tooltip") as HTMLElement;
 
@@ -190,7 +191,10 @@ export const scene = ({ ref, data }: sceneProps): void => {
   }
 
   function mouseleave() {
-    tooltip.removeAttribute("data-show");
+    setTimeout(() => {
+      if (!TTFlag) tooltip.removeAttribute("data-show");
+    }, 100);
+
     if (
       d3.select(".percentage__label input").attr("aria-checked") !== "false"
     ) {
@@ -202,7 +206,6 @@ export const scene = ({ ref, data }: sceneProps): void => {
     d3.selectAll(".legend-list__segments").style("opacity", 1);
     d3.selectAll(".polygon1").remove();
     d3.selectAll(".polygon2").remove();
-    // d3.selectAll(".tooltip").remove();
   }
 
   function segmentsMouseover(this: any, e: MouseEvent) {
@@ -234,7 +237,11 @@ export const scene = ({ ref, data }: sceneProps): void => {
       d3.selectAll(".bar-customer").style("opacity", 1);
       d3.selectAll(".legend-list__item-customer").style("opacity", 1);
       d3.select(e.target as any).style("opacity", 1);
-      d3.selectAll(".percent-xaxis__customers").style("display", "inline");
+      if (
+        d3.select(".percentage__label input").attr("aria-checked") !== "false"
+      ) {
+        d3.selectAll(".percent-xaxis").style("display", "inline");
+      }
 
       renderSegmentsPolygons({
         flag: "Customers",
@@ -246,7 +253,11 @@ export const scene = ({ ref, data }: sceneProps): void => {
       d3.selectAll(".bar-noncustomer").style("opacity", 1);
       d3.selectAll(".legend-list__item-noncustomer").style("opacity", 1);
       d3.select(e.target as any).style("opacity", 1);
-      d3.selectAll(".percent-xaxis__non-customers").style("display", "inline");
+      if (
+        d3.select(".percentage__label input").attr("aria-checked") !== "false"
+      ) {
+        d3.selectAll(".percent-xaxis").style("display", "inline");
+      }
 
       renderSegmentsPolygons({
         flag: "Non-customers",
@@ -256,12 +267,20 @@ export const scene = ({ ref, data }: sceneProps): void => {
   }
 
   function segmentsMouseleave() {
-    tooltip.removeAttribute("data-show");
+    setTimeout(() => {
+      if (!TTFlag) tooltip.removeAttribute("data-show");
+    }, 100);
 
     d3.selectAll(".bar").style("opacity", 1);
     d3.selectAll(".legend-list__item").style("opacity", 1);
     d3.selectAll(".legend-list__segments").style("opacity", 1);
-    d3.selectAll(".percent-xaxis").style("display", "inline");
+
+    if (
+      d3.select(".percentage__label input").attr("aria-checked") !== "false"
+    ) {
+      d3.selectAll(".percent-xaxis").style("display", "inline");
+    }
+
     d3.selectAll(".polygon1").remove();
     d3.selectAll(".polygon2").remove();
   }
@@ -278,4 +297,16 @@ export const scene = ({ ref, data }: sceneProps): void => {
 
   bars.on("mouseleave", mouseleave);
   legendItems.on("mouseleave", mouseleave);
+
+  function TTmouseleave() {
+    TTFlag = false;
+    tooltip.removeAttribute("data-show");
+  }
+
+  function TTmouseover() {
+    TTFlag = true;
+  }
+
+  d3.select("#tooltip").on("mouseleave", TTmouseleave);
+  d3.select("#tooltip").on("mouseover", TTmouseover);
 };
