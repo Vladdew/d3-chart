@@ -1,30 +1,17 @@
-import React, { useEffect, useRef } from "react";
 import "./App.scss";
 
-import useWindowDimensions from "./hooks/useWindowDimensions";
-import { data } from "./data";
-
-import { scene } from "./scene";
+import LegendList from "./reactComponents/LegendList";
+import Persentage from "./reactComponents/Persentage";
+import Sidebar from "./reactComponents/Sidebar";
+import ChartScene from "./reactComponents/ChartScene";
 
 const App = () => {
-  const { height, width } = useWindowDimensions();
-  const ref = useRef(null);
-
-  useEffect(() => {
-    if (ref.current) {
-      scene({ ref: ref.current, data });
-    }
-  });
-
   return (
     <div className="app">
-      <svg
-        id="scene"
-        className="scene"
-        ref={ref}
-        width={width}
-        height={height * 0.99}
-      ></svg>
+      <Persentage />
+      <LegendList />
+      <Sidebar />
+      <ChartScene />
     </div>
   );
 };

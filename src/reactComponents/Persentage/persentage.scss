@@ -1,0 +1,42 @@
+.percentage {
+  height: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__label {
+    display: flex;
+    height: 16px;
+  }
+
+  &__label p {
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    color: rgb(182, 182, 182);
+    margin-right: 5px;
+  }
+
+  &__heading {
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    color: rgb(182, 182, 182);
+    margin-left: 20px;
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+  }
+
+  .react-switch-bg div {
+    display: none;
+  }
+
+  .react-switch-bg .react-switch-handle {
+    display: block;
+  }
+}

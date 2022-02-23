@@ -1,0 +1,47 @@
+.sidebar {
+  width: 300px;
+  height: 500px;
+  position: relative;
+  border-right: 2px solid #ededed;
+  box-sizing: border-box;
+  &__brand {
+    height: 60px;
+    justify-content: start;
+    align-items: center;
+    display: flex;
+    padding-left: 69px;
+    color: #b7b7b7;
+    background: #f7f9fb;
+    width: 100%;
+    position: absolute;
+    border-right: 2px solid #ededed;
+    top: -60px;
+    box-sizing: border-box;
+    left: 2px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  &__airlines {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 388px;
+    margin-top: 67px;
+  }
+
+  &__airline {
+    width: 100%;
+    font-family: system-ui;
+    color: #8f8f8f;
+    width: 150px;
+  }
+  &__airline p {
+    margin: 5px 0;
+  }
+  &__airline span {
+    font-size: 0.8em;
+  }
+}

@@ -1,30 +1,32 @@
 .app {
-  .scene {
-    .loyal rect {
-      fill: #2b954d;
-    }
-    .switcher rect {
-      fill: #3bc366;
-    }
-    .prospect rect {
-      fill: #fbda68;
-    }
-    .winback rect {
-      fill: #fad029;
-    }
-    .lapsed rect {
-      fill: #f8a874;
-    }
-    .rejector rect {
-      fill: #f89ea4;
-    }
-    .unaware rect {
-      fill: #42beff;
-    }
-  }
+  width: 1300px;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 2px solid #ededed;
+  border-right: 2px solid #ededed;
 
   .main-scale {
-    color: #b9b9b9;
+    color: #f7f7f7;
+  }
+
+  .main-scale text {
+    color: #dfdfdf;
+  }
+
+  .main-scale .axis--y text {
+    color: rgb(148, 148, 148);
+    transform: translate(-20px, 0);
+    font-size: 12px;
+  }
+
+  .axis--x path,
+  .axis--y path {
+    display: none;
+  }
+
+  .main-scale .axis--x line {
+    stroke-width: 2px;
   }
 
   .percent-xaxis line {
@@ -43,4 +45,85 @@
   .percent-xaxis__customers {
     color: #408c52;
   }
+}
+
+.tooltipSpan {
+  background: #4c4c4c;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 3px;
+  font-size: 10px;
+  letter-spacing: 0.4px;
+}
+
+.tooltipSpan::after {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 7px solid #4c4c4c;
+
+  position: absolute;
+  top: 140%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#tooltip {
+  background-color: #333;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: bold;
+  display: none;
+}
+
+#tooltip[data-show] {
+  display: block;
+}
+
+#arrow,
+#arrow::before {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: inherit;
+}
+
+#arrow {
+  visibility: hidden;
+}
+
+#arrow::before {
+  visibility: visible;
+  content: "";
+  transform: rotate(45deg);
+}
+
+#tooltip[data-popper-placement^="top"] > #arrow {
+  bottom: -4px;
+}
+
+#tooltip[data-popper-placement^="bottom"] > #arrow {
+  top: -4px;
+}
+
+#tooltip[data-popper-placement^="left"] > #arrow {
+  right: -4px;
+}
+
+#tooltip[data-popper-placement^="right"] > #arrow {
+  left: -4px;
+}
+
+.tooltipLink {
+  text-decoration: none;
+  color: #00b9ff;
+}
+
+.short-block-text {
+  display: none;
 }

@@ -1,0 +1,37 @@
+.chartscene {
+  width: 1000px;
+  height: 500px;
+  &__white-space {
+    width: 1000px;
+    height: 20px;
+    position: absolute;
+    background: white;
+  }
+
+  &__scene {
+    .bar text {
+      pointer-events: none;
+    }
+    .loyal rect {
+      fill: #2b954d;
+    }
+    .switcher rect {
+      fill: #3bc366;
+    }
+    .prospect rect {
+      fill: #fbda68;
+    }
+    .winback rect {
+      fill: #fad029;
+    }
+    .lapsed rect {
+      fill: #f8a874;
+    }
+    .rejector rect {
+      fill: #f89ea4;
+    }
+    .unaware rect {
+      fill: #42beff;
+    }
+  }
+}

@@ -1,4 +1,7 @@
-import * as d3 from "d3";
+import * as _d3 from "d3";
+import d3Tip from "d3-tip";
+
+const d3 = { ..._d3, tip: d3Tip } as typeof _d3;
 
 interface chartProps {
   ref: SVGSVGElement;
@@ -11,10 +14,20 @@ export const chartLinear = ({
   incomingData,
   mainClass,
 }: chartProps): void => {
-  const svg = d3.select(ref);
+  var tip = d3
+    .tip()
+    .attr("class", "d3-tip")
+    .offset([-14, 0])
+    .html(function (d: any) {
+      return (
+        "<span class='tooltipSpan'>" + d.target.__data__.segment + "</span>"
+      );
+    });
+
+  const svg = d3.select(ref).call(tip as any);
 
   const margin = 60;
-  const width = 1000 - 2 * margin;
+  const width = 1080 - 2 * margin;
   const halfWidth = width / 2;
 
   let curentElWidthNonCustomers = 0;
@@ -33,7 +46,7 @@ export const chartLinear = ({
   const chart = svg
     .append("g")
     .attr("class", `bar-container ${mainClass.toLowerCase()}`)
-    .attr("transform", `translate(${margin + 100}, ${marginTop})`);
+    .attr("transform", `translate(20, ${marginTop})`);
 
   let totalCustomersWidth = 0;
   let totalNonCustomersWidth = 0;
@@ -47,10 +60,18 @@ export const chartLinear = ({
     .selectAll()
     .data(incomingData)
     .enter()
-    .append("g");
+    .append("g")
+    .attr(
+      "class",
+      s =>
+        "bar " +
+        s.segment.toLowerCase() +
+        (s.segment === "Loyal" || s.segment === "Switcher"
+          ? " bar-customer"
+          : " bar-noncustomer")
+    );
 
   barGroups
-    .attr("class", s => "bar " + s.segment.toLowerCase())
     .append("rect")
     .attr("x", s => {
       let result = 0;
@@ -74,16 +95,21 @@ export const chartLinear = ({
     })
     .attr("height", 50)
     .attr("rx", "4")
-    .attr("ry", "3");
+    .attr("ry", "3")
+    .on("mouseover", tip.show)
+    .on("mouseout", tip.hide);
 
   let customerWidth = halfWidth;
   let nonCustomerWidth = halfWidth;
 
   barGroups
     .append("text")
-    .text((d: any) => {
-      if (d.value < 5) return "";
+    .text(d => {
       return d.value + "%";
+    })
+    .attr("class", d => {
+      if (d.value < 5) return "short-block-text";
+      return "";
     })
     .attr("font-size", "62%")
     .attr("font-weight", "bold")
