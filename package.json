@@ -1,7 +1,8 @@
 {
   "name": "d3-react",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "homepage": "https://d3-chart.github.io",
   "dependencies": {
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
@@ -17,6 +18,7 @@
     "d3-axis": "^3.0.0",
     "d3-scale": "^4.0.2",
     "d3-tip": "^0.9.1",
+    "gh-pages": "^3.2.3",
     "node-sass": "^7.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -30,7 +32,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
