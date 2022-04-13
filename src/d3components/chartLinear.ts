@@ -117,8 +117,8 @@ export const chartLinear = ({
     .attr("text-anchor", "middle")
     .attr("x", d => {
       if (d.segment === "Loyal" || d.segment === "Switcher") {
-        const width = (d.value * halfWidth) / 100 / 2;
-        const result = customerWidth + width;
+        const curWidth = (d.value * halfWidth) / 100 / 2;
+        const result = customerWidth + curWidth;
         customerWidth += (d.value * halfWidth) / 100;
         return result;
       } else {
