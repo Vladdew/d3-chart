@@ -1,8 +1,8 @@
 {
-  "name": "d3-react",
+  "name": "d3-chart",
   "version": "0.1.0",
-  "private": false,
-  "homepage": "https://d3-chart.github.io",
+  "private": true,
+  "homepage": "https://Vladdew.github.io/d3-chart",
   "dependencies": {
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
