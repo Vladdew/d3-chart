@@ -1,5 +1,3 @@
-import React, { useEffect, useRef } from "react";
-import { data } from "../../data";
 import "./sidebar.scss";
 
 const Sidebar = () => {
